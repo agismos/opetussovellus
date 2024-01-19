@@ -14,4 +14,4 @@ Sovelluksen ominaisuuksia:
   <li>Opettaja pystyy näkemään kurssistaan tilaston, keitä opiskelijoita on kurssilla ja mitkä kurssin tehtävät kukin on ratkonut.</li>
 </ul>
 
-(Tämän sovelluksen idea on otettu sellaisenaan Tietokannat ja web-ohjelmointi -kurssin esimerkkisovelluksista.)
+(Tämän sovelluksen idea on otettu Tietokannat ja web-ohjelmointi -kurssin esimerkkisovelluksista. Koin sovelluksen idean sen verran mielekkääksi, että aion lähteä toteuttamaan sovelluksen sellaisenaan. Voi olla, että kaikkia listattuja ominaisuuksia ei tule olemaan lopullisessa sovelluksessa. Vastaavasti sovellukseen saattaa tulla ominaisuuksia joita tuossa ei ole listattu.)
