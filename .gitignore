@@ -1,0 +1,5 @@
+# Ignore following files:
+.env
+__pycache__
+venv
+.history
