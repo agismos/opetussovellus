@@ -1,5 +1,0 @@
-Tämä on testi.
-
-Kokeilen lisätä tiedoston GitHubiin.
-
-The End.
