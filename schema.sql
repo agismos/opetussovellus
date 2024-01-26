@@ -1,2 +1,1 @@
-CREATE TABLE visitors (id SERIAL PRIMARY KEY, time TIMESTAMP);
-CREATE TABLE purchases (id SERIAL PRIMARY KEY, item TEXT);
+CREATE TABLE users (id SERIAL PRIMARY KEY, realname TEXT, username TEXT, password TEXT);
