@@ -1,14 +1,25 @@
 <h1>Luo tunnus</h1>
-<form action="/add_student" method="POST">
+<form action="/add_student" method="POST" onsubmit="return check(this)">
 <p>Etunimi:<br>
-<input type="text" name="firstname"></p>
+<input type="text" name="firstname" {{ value1 }}></p>
 <p>Sukunimi:<br>
-<input type="text" name="lastname"></p>
+<input type="text" name="lastname" {{ value2 }}></p>
 <p>Käyttäjätunnus:<br>
-<input type="text" name="username"></p>
+<input type="text" name="username" {{ value3 }}>
+{{ message }}</p>
 <p>Salasana:<br>
-<input type="password" name="password1"></p>
+<input type="password" name="password1" {{ value4 }}></p>
 <p>Toista salasana:<br>
-<input type="password" name="password2"></p>
+<input type="password" name="password2" {{ value5 }}></p>
 <input type="submit" value="Luo tunnus">
 </form>
+
+<script>
+    function check(form) {
+        if (form.password1.value != form.password2.value) {
+            alert("Salasanat eivät täsmää.");
+            return false;
+        }
+        return true;
+}
+</script>
