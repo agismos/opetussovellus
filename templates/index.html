@@ -4,9 +4,11 @@
 {% else %}
 <form action="/login" method="POST">
 <p>Tunnus:<br>
-<input type="text" name="username"></p>
+<input type="text" name="username">
+{{ message1 }}</p>
 <p>Salasana:<br>
-<input type="password" name="password"></p>
+<input type="password" name="password">
+{{ message2 }}</p>
 <input type="submit" value="Kirjaudu">
 <p><a href="/create_account">Luo tunnus</a></p>
 </form>

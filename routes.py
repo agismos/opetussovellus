@@ -2,6 +2,7 @@ from app import app
 from flask import redirect, render_template, request, session
 from db import db
 from sqlalchemy.sql import text
+from werkzeug.security import check_password_hash, generate_password_hash
 
 @app.route("/")
 def index():
@@ -11,9 +12,25 @@ def index():
 def login():
     username = request.form["username"]
     password = request.form["password"]
+
     # TODO: check username and password
-    session["username"] = username
-    return redirect("/")
+
+    sql = text("SELECT id, password FROM users WHERE username=:username")
+    result = db.session.execute(sql, {"username":username})
+    user = result.fetchone()    
+    if not user:
+        message1 = "Virheellinen käyttäjätunnus"
+        return render_template("index.html", message1=message1)
+
+    else:
+        hash_value = user.password
+        if check_password_hash(hash_value, password):
+            session["username"] = username
+            return redirect("/")
+            
+        else:
+            message2 = "Virheellinen salasana"
+            return render_template("index.html", message2=message2)
 
 @app.route("/logout")
 def logout():
@@ -55,7 +72,7 @@ def add_student():
     
     realname = request.form["firstname"]
     realname += " " + request.form["lastname"]
-    password = request.form["password1"]
+    password = generate_password_hash(request.form["password1"])
     sql = text("INSERT INTO users (realname, username, password) VALUES (:realname, " \
                ":username, :password) RETURNING id")
     db.session.execute(sql, {"realname":realname, "username":username, "password":password})
