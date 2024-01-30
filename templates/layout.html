@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <meta charset="utf-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1">
+        <title>Opetussovellus</title>
+    </head>
+
+    <body>
+        {% if session.username %}
+
+        <header>
+            TÄMÄ ON OPETUSSOVELLUS!
+        </header><br>
+
+        <nav>
+            <div class="nav">
+                Olet kirjautunut nimellä {{ session.username }}.
+                <a href="/logout">Kirjaudu ulosssssss</a>
+            </div>
+        </nav><br>
+
+        <div class="container">
+            <div class="aside">
+                <h1>Tähän tulee tiedot kursseista:</h1>
+                {% block courses %}{% endblock %}
+            </div>
+
+            <div class="main">
+                {% block main %}{% endblock %}
+            </div>
+        </div>
+
+
+
+
+        {% else %}
+        <div class="login">
+        <form action="/login" method="POST">
+                <p>Tunnus:
+                <input type="text" name="username">
+                {{ message1 }}</p>
+                <p>Salasana:
+                <input type="password" name="password">
+                {{ message2 }}</p>
+                <input type="submit" value="Kirjaudu">
+                <p><a href="/create_account">Luo tunnus</a></p>
+        </div>
+        </form>
+        {% endif %}
+
+    </body>
+</html>

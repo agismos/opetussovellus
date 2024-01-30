@@ -1,43 +1,21 @@
-<!DOCTYPE html>
-<html>
+{% extends "layout.html" %}
 
-    <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <meta charset="utf-8">
-        <meta name="viewpoint" content="width=device-width, initial-scale=1">
-    </head>
+{% block courses %}
 
-    <body>
-        {% if session.username %}
-        <p>Olet kirjautunut nimellä {{ session.username }}</p>
-        <a href="/logout">Kirjaudu ulos</a>
-    
-        <div class="container">
-            <div class="column">
-                <h2><p>TÄSSÄ ON OTSIKKO</p></h2>
-                <p>Tähän tulee tekstiä</p>
-                <p>Lisää tekstiä tähän...</p>
-            </div>
-            <div class="column">
-                <h2>Tässä on otsikko 2</h2>
-                <p>Sisältö tulee tähän</p>
-            </div>
-        </div>
-
-        {% else %}
-        <form action="/login" method="POST">
-        <p>Tunnus:<br>
-        <input type="text" name="username">
-        {{ message1 }}</p>
-        <p>Salasana:<br>
-        <input type="password" name="password">
-        {{ message2 }}</p>
-        <input type="submit" value="Kirjaudu">
-        <p><a href="/create_account">Luo tunnus</a></p>
-        </form>
-        {% endif %}
+Ohjelmoinnin perusteet <br>
+Ohjelmoinnin jatkokurssi <br>
+Matematiikka <br>
+Englanti <br>
+Ruotsi <br>
+Saksa <br>
 
 
-    </body>
+{% endblock %}
 
-</html>
+
+{% block main %}
+<h1>Tervetuloa Opetussovellukseen!</h1><br>
+Ole hyvä ja valitse kurssi.
+
+{% endblock %}
+

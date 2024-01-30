@@ -1,9 +1,47 @@
-.container {
-    display: flex;
+body {
+    margin: auto;
+    max-width: 75em;
+    font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
-.column {
-    flex: 1;
+.login {
+    margin: auto;
+    max-width: 50em;
+    border: 1px solid #5f5151;
+    text-align: center;
+    border-radius: 25px;
+}
+
+header {
+    padding: 20px;
+    border: 1px solid hsl(160, 92%, 40%);
+    border-radius: 25px;
+}
+
+nav {
+    padding: 20px;
+    border: 1px solid #5f5151;
+    border-radius: 25px;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    margin: 15 px 0;
+  }
+
+.aside {
+    width: 30%;
     padding: 20px;
     border: 1px solid #ddd;
+    border-radius: 25px;
+    margin-right: 20px;
+}
+
+
+.main {
+    width: 70%;
+    padding: 20px;
+    border: 1px solid #8b0909;
+    border-radius: 25px;
 }
