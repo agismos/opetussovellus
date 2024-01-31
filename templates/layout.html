@@ -17,13 +17,12 @@
         <nav>
             <div class="nav">
                 Olet kirjautunut nimellä {{ session.username }}.
-                <a href="/logout">Kirjaudu ulosssssss</a>
+                <a href="/logout">Kirjaudu ulos</a>
             </div>
         </nav><br>
 
         <div class="container">
             <div class="aside">
-                <h1>Tähän tulee tiedot kursseista:</h1>
                 {% block courses %}{% endblock %}
             </div>
 

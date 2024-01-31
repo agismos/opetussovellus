@@ -1,21 +1,19 @@
 {% extends "layout.html" %}
 
 {% block courses %}
+<h2>Saatavilla olevat kurssit:</h2>
 
-Ohjelmoinnin perusteet <br>
-Ohjelmoinnin jatkokurssi <br>
-Matematiikka <br>
-Englanti <br>
-Ruotsi <br>
-Saksa <br>
+
+{{ courses | safe }}
 
 
 {% endblock %}
 
 
 {% block main %}
-<h1>Tervetuloa Opetussovellukseen!</h1><br>
-Ole hyvä ja valitse kurssi.
+{{ course_information }}
+
+
 
 {% endblock %}
 
