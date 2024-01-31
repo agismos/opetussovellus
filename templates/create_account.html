@@ -3,7 +3,7 @@
 
 <div class="login">
     <h1>Luo tunnus</h1>
-    <form action="/add_student" method="POST" onsubmit="return check(this)">
+    <form action="/add_student" method="POST" onsubmit="return check1(this)">
         Valitse rooli:
         <p>
             <select name="role">
@@ -34,13 +34,19 @@
     </form>
 </div>
 
-<!--Tämän voisi ehkä toteuttaa samalla tavalla kuin tarkistetaan, onko username jo käytössä:-->
 <script>
-    function check(form) {
+    function check1(form) {
         if (form.password1.value != form.password2.value) {
             alert("Salasanat eivät täsmää.");
             return false;
         }
+
+        if (form.role.value == "teachers" && form.secretkey.value != "abc123") {
+            alert("Virheellinen avain")
+            return false
+        }
         return true;
 }
+
+
 </script>
