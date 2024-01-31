@@ -84,3 +84,9 @@ def add_student():
                                                         value3=value3,
                                                         value4=value4,
                                                         value5=value5)
+    
+@app.route("/show_course_details/<course>")
+def show_course_details(course):
+    result = courses.course_information(course)
+    all = courses.list_courses()
+    return render_template("index.html", course_information=result, courses=all)
