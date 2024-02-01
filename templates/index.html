@@ -4,18 +4,22 @@
 <h2>Saatavilla olevat kurssit:</h2>
 
 
-{{ courses | safe }}
+{{ courses | safe }} <br> <hr>
+
+{{ generate_course | safe }}
 
 
 {% endblock %}
 
 
 {% block main %}
-
-{{ course_information }} <br> <hr>
-
+<p>
+{{ course_information }} <br>
+</p>
 {{ hyperlink | safe }} 
 
 
+{{ username }}
 
+{{ rights }}
 {% endblock %}

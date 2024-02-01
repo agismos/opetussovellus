@@ -13,14 +13,17 @@ def login(username, password, role):
         hash_value = user.password
         if check_password_hash(hash_value, password):
             session["username"] = username
+            if role == "teacher":
+                session["user_rights"] = "admin"
             return True
         else:
             return False
 
-def check_username(username):
+def check_username(username, rights):
     try:
-        sql = text("INSERT INTO usernames (username) VALUES (:username)")
-        db.session.execute(sql, {"username":username})
+        sql = text("INSERT INTO usernames (username, rights) VALUES (:username, :rights)")
+        print("JUUUUU")
+        db.session.execute(sql, {"username":username, "rights":rights})
         db.session.commit()
     except:
         return False
@@ -32,3 +35,15 @@ def register(username, realname, password, role):
     db.session.execute(sql, {"realname":realname, "username":username, "password":password})
     db.session.commit()
     return
+
+def check_status():
+    try:
+        username = session['username']
+        sql = text(f"SELECT rights FROM usernames WHERE username='{username}'")
+        status = db.session.execute(sql).fetchone()[0]
+    except:
+        return False
+
+    if status == "teachers":
+        return True
+    return False

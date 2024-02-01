@@ -8,7 +8,12 @@ import users, courses
 @app.route("/")
 def index():
     all = courses.list_courses()
-    return render_template("index.html", courses=all)
+
+    generate_course = ""
+    if users.check_status():
+        generate_course = "<a href='/generate_course'>Lisää kurssi</a>"
+
+    return render_template("index.html", courses=all, generate_course=generate_course)
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -59,7 +64,7 @@ def add_student():
                                                         value4=value4,
                                                         value5=value5)
         
-    if users.check_username(username):
+    if users.check_username(username, role):
         if password1 != password2:
             password_check = "Salasanat eivät täsmää"
             return render_template("create_account.html", password_check=password_check,
@@ -89,20 +94,26 @@ def add_student():
 def show_course_details(course):
     result = courses.course_information(course)
     allcourses = courses.list_courses()
-    hyperlink = f"<form action='/enroll' method='POST'> \
-                <input type='hidden' name='{course}'> \
-                <input type='submit' value='Ilmoittaudu kurssille'> \
-                </form>"
-    return render_template("index.html", course_information=result, courses=allcourses, hyperlink=hyperlink)
+
+    generate_course = ""
+    if users.check_status():
+        generate_course = "<a href='/generate_course'>Lisää kurssi</a>"
+
+    hyperlink = ""
+    if not users.check_status():
+        hyperlink = f"<form action='/enroll' method='POST'> \
+                    <input type='hidden' name='{course}'> \
+                    <input type='submit' value='Ilmoittaudu kurssille'> \
+                    </form>"
+    
+    return render_template("index.html", course_information=result, courses=allcourses, hyperlink=hyperlink,
+                           generate_course=generate_course)
 
 
 @app.route("/enroll", methods=["POST"])
 def enroll():
     course_name = list(request.form.keys())[0]
     courses.add_student(course_name)
-
-    #result = courses.course_information(course)
-    #allcourses = courses.list_courses()
 
     all = courses.list_courses()
     return render_template("index.html", courses=all, course_information="Ilmoittautuminen lisätty. Tervetuloa kurssille!")

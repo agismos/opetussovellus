@@ -21,7 +21,7 @@ def course_information(course_name):
 
 def add_student(course_name):
     student_username = session['username']
-    
+
     sql = text(f"SELECT (teacher_username) FROM courses WHERE course_name='{course_name}'")
     teacher_username = db.session.execute(sql).fetchone()[0]
 
