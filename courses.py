@@ -13,9 +13,26 @@ def list_courses():
     return result
 
 def course_information(course_name):
-    sql = text(f"SELECT details FROM courses WHERE course_name='{course_name}'")
+    sql = text(f"SELECT contents FROM courses WHERE course_name='{course_name}'")
     db.session.execute(text("SET client_encoding TO 'UTF8';"))
     result = db.session.execute(sql)
     details = result.fetchone()
-    print(details)
     return details[0]
+
+def add_student(course_name):
+    student_username = session['username']
+    
+    sql = text(f"SELECT (teacher_username) FROM courses WHERE course_name='{course_name}'")
+    teacher_username = db.session.execute(sql).fetchone()[0]
+
+    sql = text(f"SELECT (id) FROM courses WHERE course_name='{course_name}'")
+    course_id = db.session.execute(sql).fetchone()[0]
+
+    sql = text(f"INSERT INTO enrollments (course_id, course_name, student_username, \
+               teacher_username) VALUES (:course_id, :course_name, :student_username, \
+               :teacher_username)")
+    
+    db.session.execute(sql, {"course_id":course_id, "course_name":course_name, \
+                             "student_username":student_username, "teacher_username":teacher_username})
+    db.session.commit()
+    return

@@ -88,5 +88,21 @@ def add_student():
 @app.route("/show_course_details/<course>")
 def show_course_details(course):
     result = courses.course_information(course)
+    allcourses = courses.list_courses()
+    hyperlink = f"<form action='/enroll' method='POST'> \
+                <input type='hidden' name='{course}'> \
+                <input type='submit' value='Ilmoittaudu kurssille'> \
+                </form>"
+    return render_template("index.html", course_information=result, courses=allcourses, hyperlink=hyperlink)
+
+
+@app.route("/enroll", methods=["POST"])
+def enroll():
+    course_name = list(request.form.keys())[0]
+    courses.add_student(course_name)
+
+    #result = courses.course_information(course)
+    #allcourses = courses.list_courses()
+
     all = courses.list_courses()
-    return render_template("index.html", course_information=result, courses=all)
+    return render_template("index.html", courses=all, course_information="Ilmoittautuminen lisätty. Tervetuloa kurssille!")
