@@ -19,8 +19,14 @@ def course_information(course_name):
     details = result.fetchone()
     return details[0]
 
-def add_student(course_name):
+def add_enrollment(course_name):
     student_username = session['username']
+
+    sql = text(f"SELECT * FROM enrollments WHERE course_name='{course_name}' AND \
+               student_username='{student_username}'")
+    result = db.session.execute(sql).fetchone()
+    if result:
+        return False
 
     sql = text(f"SELECT (teacher_username) FROM courses WHERE course_name='{course_name}'")
     teacher_username = db.session.execute(sql).fetchone()[0]
@@ -35,4 +41,17 @@ def add_student(course_name):
     db.session.execute(sql, {"course_id":course_id, "course_name":course_name, \
                              "student_username":student_username, "teacher_username":teacher_username})
     db.session.commit()
-    return
+    return True
+
+def my_courses(username, column):
+    sql = text(f"SELECT course_name FROM enrollments WHERE {column}='{username}'")
+    result = db.session.execute(sql)
+
+    courses = result.fetchall()
+
+    result = "<br>"
+
+    for course in courses:
+        result += str(course.course_name) + "<br>"
+
+    return result

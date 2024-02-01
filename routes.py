@@ -113,7 +113,35 @@ def show_course_details(course):
 @app.route("/enroll", methods=["POST"])
 def enroll():
     course_name = list(request.form.keys())[0]
-    courses.add_student(course_name)
+
+    course_information= "Ilmoittautuminen lisätty. Tervetuloa kurssille!"
+
+    if not courses.add_enrollment(course_name):
+        course_information = "Olet jo ilmoittautunut tälle kurssille."
 
     all = courses.list_courses()
-    return render_template("index.html", courses=all, course_information="Ilmoittautuminen lisätty. Tervetuloa kurssille!")
+    return render_template("index.html", courses=all, course_information=course_information)
+
+@app.route("/information")
+def information():
+    username = session["username"]
+    role = "Opiskelija"
+    column = "student_username"
+    if users.check_status():
+        role = "Opettaja"
+        column = "teacher_username"
+    
+    my_courses = courses.my_courses(username, column)
+
+    my_information = f"<h1>Omat tiedot</h1> \
+                            <p>Käyttäjätunnus: {username} </p> \
+                            <p>Status: {role} </p> \
+                            Omat kurssit: {my_courses}"
+
+    all = courses.list_courses()
+
+    generate_course = ""
+    if users.check_status():
+        generate_course = "<a href='/generate_course'>Lisää kurssi</a>"
+
+    return render_template("index.html", generate_course=generate_course, courses=all, username=username, my_information=my_information)
