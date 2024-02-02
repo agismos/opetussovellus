@@ -165,17 +165,24 @@ def add_question(course_name):
     return render_template("add_question.html", course_name=course_name,
                                                 information=information)
 
-@app.route("/add_answers", methods=["POST"])
+@app.route("/add_answers", methods=["POST", "GET"])
 def add_answers():
     course_name = request.form["course_name"]
-    print(course_name)
     question = request.form["question"]
-    print(question)
+
+    return render_template("add_answer.html", course_name=course_name,
+                                                question=question)
+
+@app.route("/add_to_database", methods=["POST"])
+def add_to_database():
+
+    course_name = request.form["course_name"]
+    question = request.form["question"]
     answer = request.form["answer"]
-    print(answer)
     trueorfalse = request.form["trueorfalse"]
-    print(trueorfalse)
+
 
     courses.add_to_table(course_name, question, answer, trueorfalse)
 
-    return redirect(f"/add_questions/{course_name}")
+    return render_template("add_answer.html", course_name=course_name,
+                                                question=question)

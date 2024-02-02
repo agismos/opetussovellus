@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="input">
+        <h1>Lisää kysymyksiä kurssille {{ course_name }}</h1>
+
+        <form action="/add_to_database" method="POST">
+
+            <p>
+            <input type="radio" name="course_name" value="{{ course_name }}" checked> Kurssin nimi: {{ course_name }} </p>
+
+            <input type="radio" name="question" value="{{ question }}" checked> Kysymys: {{ question }} </p>
+
+            <p>Lisää vastaus:<br>
+
+            <textarea name="answer" rows="5" cols="50" required></textarea></p>
+
+            <p>Vastauksen tyyppi: <br>
+            <input type="radio" name="trueorfalse" value="t" checked> Oikea vastaus
+            <input type="radio" name="trueorfalse" value="f"> Väärä vastaus</p>
+
+            <input type="submit" value="Lisää vastaus"> <br> <hr>
+            <a href="/add_questions/{{ course_name }}">Lisää uusi kysymys</a> <br>
+            <a href="/">Palaa etusivulle</a> <br>
+            
+        </form>
+    </div>
+
+    <div><br><br>
+        <h1>Ohjeita:</h1>
+        Syötä ensin kysymys. Tämän jälkeen voit lisätä kysymykseen vastauksia. Jokaiseen
+        kysymykseen on lisättävä vähintään yksi oikea vastaus. Tämän lisäksi kysymykseen
+        voi lisätä myös vääriä vastauksia.
+    </div>
+</div>

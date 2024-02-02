@@ -22,7 +22,6 @@ def login(username, password, role):
 def check_username(username, rights):
     try:
         sql = text("INSERT INTO usernames (username, rights) VALUES (:username, :rights)")
-        print("JUUUUU")
         db.session.execute(sql, {"username":username, "rights":rights})
         db.session.commit()
     except:

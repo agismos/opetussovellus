@@ -78,7 +78,6 @@ def add_course(course_name, credits, contents):
 def add_to_table(course_name, question, answer, is_correct):
     sql = text(f"SELECT courses.id FROM courses WHERE courses.course_name='{course_name}'")
     id = db.session.execute(sql).fetchone()
-    print(id[0])
     id = id[0]
 
     sql = text("INSERT INTO questions (course_id, course_name, question, answer, is_correct) \
