@@ -136,7 +136,9 @@ def information():
     my_information = f"<h1>Omat tiedot</h1> \
                             <p>Käyttäjätunnus: {username} </p> \
                             <p>Status: {role} </p> \
-                            Omat kurssit: {my_courses}"
+                            Omat kurssit: {my_courses} \
+                            <p>Tunnus luotu: TÄHÄN PÄIVÄMÄÄRÄ</p> \
+                            <p>Poista tunnus: TUNNUKSEN poisto!</p>"
 
     all = courses.list_courses()
 
@@ -186,3 +188,18 @@ def add_to_database():
 
     return render_template("add_answer.html", course_name=course_name,
                                                 question=question)
+
+@app.route("/exams")
+def exams():
+    username = session["username"]
+    my_courses = courses.list_my_courses(username)
+    to_render = courses.render(my_courses)
+
+    return render_template("exams.html", my_courses=to_render)
+
+@app.route("/exams/download", methods=["POST"])
+def exams_download():
+    pass
+    """RENRERÖI TENTTI. Hae tenttikysymykset taulusta questions
+    ja renderöi sen mukaan, onko vastauksia yksi vai useampi
+    (eli monivalinta vai tekstikenttä )"""

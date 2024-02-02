@@ -88,3 +88,33 @@ def add_to_table(course_name, question, answer, is_correct):
     
     db.session.commit()
     return
+
+def list_my_courses(username):
+    sql = text(f"SELECT course_name FROM enrollments WHERE student_username='{username}'")
+
+    courses = db.session.execute(sql).fetchall()
+
+    return_value = []
+
+    for course in courses:
+        return_value.append(course.course_name)
+
+    return return_value
+
+def render(courses):
+
+    to_render = "<h1>Kurssit, joille olet ilmoittautunut:</h1>"
+    to_render += "<form action='/exams/download' method='POST'>"
+
+    for course in courses:
+        to_render += f"<p>{course}</p>"
+
+    to_render += "<p>Valitse tentti, jonka haluat suorittaa:</p>"
+    to_render += "<select name='course'>"
+
+    for course in courses:
+        to_render += f"<option value='{course}'> {course}"
+
+    to_render += "</select>"
+    to_render += "<p><input type='submit' value='Aloita tentti'></p>"
+    return to_render
