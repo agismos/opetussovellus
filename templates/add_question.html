@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<div class="container">
+    <div class="input">
+        <h1>Lisää kysymyksiä kurssille {{ course_name }}</h1>
+
+        <form action="/add_answers" method="POST">
+
+            <p>
+            <input type="radio" name="course_name" value="{{ course_name }}" checked> {{ course_name }} </p>
+
+            <p>Lisää kysymys:<br>
+
+            <textarea name="question" rows="5" cols="50" required></textarea></p>
+
+            <p>Lisää vastaus:<br>
+
+            <textarea name="answer" rows="5" cols="50" required></textarea></p>
+
+            <p>Vastauksen tyyppi: <br>
+            <input type="radio" name="trueorfalse" value="t" checked> Oikea vastaus
+            <input type="radio" name="trueorfalse" value="f"> Väärä vastaus</p>
+
+            <input type="submit" value="Lisää kysymys">
+        </form>
+    </div>
+
+    <div><br><br>
+        <h1>Ohjeita:</h1>
+        Lisää kysmys ja vastaus. Jokaiseen kysymykseen on oltava vähintään yksi oikea vastaus. <br>
+        Sen lisäksi voi valita myös vääriä vastauksia.
+    </div>
+</div>

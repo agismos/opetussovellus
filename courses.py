@@ -68,9 +68,24 @@ def add_course(course_name, credits, contents):
     sql = text("INSERT INTO courses (course_name, credits, contents, \
                teacher_name, teacher_username) VALUES (:course_name, \
                :credits, :contents, :teacher_name, :teacher_username)")
-    print("moikka")
+    
     db.session.execute(sql, {"course_name":course_name, "credits":credits, \
                              "contents":contents, "teacher_name":realname, \
                                 "teacher_username":teacher_name})
+    db.session.commit()
+    return
+
+def add_to_table(course_name, question, answer, is_correct):
+    sql = text(f"SELECT courses.id FROM courses WHERE courses.course_name='{course_name}'")
+    id = db.session.execute(sql).fetchone()
+    print(id[0])
+    id = id[0]
+
+    sql = text("INSERT INTO questions (course_id, course_name, question, answer, is_correct) \
+               VALUES (:course_id, :course_name, :question, :answer, :is_correct)")
+    
+    db.session.execute(sql, {"course_id":id, "course_name":course_name, "question":question, \
+                             "answer":answer, "is_correct":is_correct})
+    
     db.session.commit()
     return
