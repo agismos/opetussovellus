@@ -55,3 +55,22 @@ def my_courses(username, column):
         result += str(course.course_name) + "<br>"
 
     return result
+
+def add_course(course_name, credits, contents):
+
+    teacher_name = session["username"]
+
+    sql = text(f"SELECT (realname) FROM teachers WHERE username='{teacher_name}'")
+    realname = db.session.execute(sql).fetchone()
+
+    realname = realname.realname
+
+    sql = text("INSERT INTO courses (course_name, credits, contents, \
+               teacher_name, teacher_username) VALUES (:course_name, \
+               :credits, :contents, :teacher_name, :teacher_username)")
+    print("moikka")
+    db.session.execute(sql, {"course_name":course_name, "credits":credits, \
+                             "contents":contents, "teacher_name":realname, \
+                                "teacher_username":teacher_name})
+    db.session.commit()
+    return

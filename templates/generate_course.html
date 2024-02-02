@@ -5,24 +5,15 @@
     <h1>Luo uusi kurssi</h1>
 
     <form action="/generate_course/add" method="POST">
-        <p>
-        Anna kurssin nimi:
-
+        <p>Anna kurssin nimi:
             <input type="text" name="course_name" required></p>
-        </p>
 
         <p>Opintopisteiden määrä:
-            <input type="text" name="credits" required></p>
-        </p>
+            <input type="number" name="credits" required></p>
 
+        <p>Kurssin kuvaus:<br>
+        <textarea name="contents" rows="5" cols="50" required></textarea></p>
 
-
-
-
-
+        <input type="submit" value="Luo kurssi">
     </form>
-
-
-
-
 </div>

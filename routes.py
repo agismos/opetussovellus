@@ -150,3 +150,11 @@ def information():
 @app.route("/generate_course")
 def generate_course():
     return render_template("generate_course.html")
+
+@app.route("/generate_course/add", methods=["POST"])
+def generate_course_add():
+    course_name = request.form["course_name"]
+    credits = request.form["credits"]
+    contents = request.form["contents"]
+    courses.add_course(course_name, credits, contents)
+    return redirect("/")
