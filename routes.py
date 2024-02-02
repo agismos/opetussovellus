@@ -144,4 +144,9 @@ def information():
     if users.check_status():
         generate_course = "<a href='/generate_course'>Lisää kurssi</a>"
 
-    return render_template("index.html", generate_course=generate_course, courses=all, username=username, my_information=my_information)
+    return render_template("index.html", generate_course=generate_course,
+                                courses=all, username=username, my_information=my_information)
+
+@app.route("/generate_course")
+def generate_course():
+    return render_template("generate_course.html")
