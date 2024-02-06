@@ -4,6 +4,16 @@ Sovelluksen käyttäjä on opettaja tai opiskelija. Käyttäjä voi luoda tunnuk
 joko opettajan tai opiskelijan roolissa. Jos tunnuksen luo opettajan roolissa,
 tarvitaan salainen avain. Tässä vaiheessa salainen avain on abc123.
 
+Sovellusta voi tässä vaiheessa testata paikallisesti. Kloonaamisen jälkeen
+sovelluksen pitäisi käynnistyä seuraavilla komennoilla:
+
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip install -r ./requirements.txt
+
+$ psql < schema.sql
+$ flask run
+
 Mitä sovelluksessa voi tehdä tässä vaiheessa:
 
 <ul>
