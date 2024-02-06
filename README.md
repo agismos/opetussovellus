@@ -7,12 +7,15 @@ tarvitaan salainen avain. Tässä vaiheessa salainen avain on abc123.
 Sovellusta voi tässä vaiheessa testata paikallisesti. Kloonaamisen jälkeen
 sovelluksen pitäisi käynnistyä seuraavilla komennoilla:
 
-$ python3 -m venv venv
-$ source venv/bin/activate
-$ pip install -r ./requirements.txt
+<ul>
+  <li>python3 -m venv venv</li>
+  <li>source venv/bin/activate</li>
+  <li>pip install -r ./requirements.txt</li>
 
-$ psql < schema.sql
-$ flask run
+  <li>psql < schema.sql</li>
+
+  <li>flask run</li>
+</ul>
 
 Mitä sovelluksessa voi tehdä tässä vaiheessa:
 
