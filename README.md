@@ -28,13 +28,10 @@ Mitä sovelluksessa voi tehdä tässä vaiheessa:
 
   <li>Opettaja pystyy lisäämään tenttiin kysymyksiä ja vastauksia. Vastaukset
       tallentuvat tietokantaan questions, jossa näkyy onko vastaus oikein vai väärin.</li>
+  <li>Tentin tekeminen on mahdollista. (Tentin tulokset eivät vielä tallennu minnekään.)</li>
 </ul>
 
 Tehtävää:
 <ul>
-  <li>Opiskelija voi tehdä tentin. Tätä varten täytyy luoda funktio joka hakee
-      tentin kysymykset ja vastaukset tietokannasta ja luo tentin näiden perusteella. Jos kysymykseen on yksi oikea vastaus, kysymyksen muoto on avoin kysymys johon vastataan tekstikenttään. Jos kysymykseen on sekä oikeita että vääriä vastauksia, kysymys on monivalintakysymys.</li>
   <li>Opiskelija näkee yhteenvedon tekemistään tenteistä.</li>
-  <li>Sovelluksen idea on olla tenttisovellus. Mutta ehkä Opettaja voi lisätä kurssille kurssimateriaalia?</li>
-  <li>Opiskelija voi lähettää viestin kurssin opettajalle?</li>
   <li>Ulkoasu on alkutekijöissään. Tavoitteena tyylikäs ja yhtenäinen ilme sovellukselle.</li>
