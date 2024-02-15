@@ -118,3 +118,33 @@ def render(courses):
     to_render += "</select>"
     to_render += "<p><input type='submit' value='Aloita tentti'></p>"
     return to_render
+
+def fetch_questions(course_name):
+    sql = text(f"SELECT * FROM questions WHERE course_name='{course_name}'")
+
+    questions = db.session.execute(sql).fetchall()
+
+    dict = {}
+    for question in questions:
+        if question[3] not in dict:
+            dict[question[3]] = []
+        dict[question[3]].append((question[4], question[5]))
+
+    
+    result = ""
+    number = 1
+    result += "<form action='/answers' method='POST'>"
+
+    for question in dict:
+        result += f"<h1>{question}</h1>"
+        for answer in dict[question]:
+            if len(dict[question]) > 1:
+                result += f"<p><input type='radio' name='answer{number}' value='{answer[0]}'> {answer[0]}"
+            else:
+                result += f"<input type='text' name=answer{number}>"
+        number += 1
+        result += "<br><hr>"
+
+    result += "<p><input type='submit' value='Lähetä'></form>"
+    
+    return result

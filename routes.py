@@ -199,7 +199,9 @@ def exams():
 
 @app.route("/exams/download", methods=["POST"])
 def exams_download():
-    pass
-    """RENRERÖI TENTTI. Hae tenttikysymykset taulusta questions
-    ja renderöi sen mukaan, onko vastauksia yksi vai useampi
-    (eli monivalinta vai tekstikenttä )"""
+
+    course = request.form["course"]
+
+    questions = courses.fetch_questions(course)
+
+    return render_template("download_exam.html", questions=questions)
