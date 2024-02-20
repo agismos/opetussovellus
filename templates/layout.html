@@ -5,6 +5,12 @@
         <meta charset="utf-8">
         <meta name="viewpoint" content="width=device-width, initial-scale=1">
         <title>Tenttisovellus</title>
+        <style>
+            nav li {
+                display: inline-block;
+                padding: 0 .5em;
+            }
+        </style>
     </head>
 
     <body>
@@ -17,9 +23,9 @@
             <div class="nav">
                 <h2>Tervetuloa opiskelemaan!</h2>
                 Olet kirjautunut nimellä {{ session.username }}. <hr>
-                <a href="/logout">Kirjaudu ulos</a>
-                <a href="/information">Omat tiedot</a>
-                <a href="/exams">Tee tentti</a>
+                <li><a href="/logout">Kirjaudu ulos</a></li>
+                <li><a href="/information">Käyttäjätiedot</a></li>
+                <li><a href="/exams">Tee tentti</a></li>
             </div>
         </nav><br>
 

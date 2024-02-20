@@ -18,16 +18,30 @@
             <input type="radio" name="trueorfalse" value="f"> Väärä vastaus</p>
 
             <input type="submit" value="Lisää vastaus"> <br> <hr>
-            <a href="/add_questions/{{ course_name }}">Lisää uusi kysymys</a> <br>
-            <a href="/">Palaa etusivulle</a> <br>
+            <a href="/add_questions/{{ course_name }}">Lisää uusi kysymys</a>
+            <a href="/">Palaa etusivulle</a>
             
         </form>
     </div>
 
     <div><br><br>
-        <h1>Ohjeita:</h1>
+        <h2>Ohjeet:</h2>
         Syötä ensin kysymys. Tämän jälkeen voit lisätä kysymykseen vastauksia. Jokaiseen
         kysymykseen on lisättävä vähintään yksi oikea vastaus. Tämän lisäksi kysymykseen
-        voi lisätä myös vääriä vastauksia.
+        voi lisätä vääriä vastauksia.
     </div>
 </div>
+
+
+<style>
+    body {
+        margin: auto;
+        max-width: 45em;
+        font-family: 'Helvetica', 'Arial', sans-serif;
+    }
+
+    nav li {
+        display: inline-block;
+        padding: 0 .1em;
+    }
+</style>

@@ -133,12 +133,10 @@ def information():
     
     my_courses = courses.my_courses(username, column)
 
-    my_information = f"<h1>Omat tiedot</h1> \
+    my_information = f"<h1>Käyttäjätiedot</h1> \
                             <p>Käyttäjätunnus: {username} </p> \
                             <p>Status: {role} </p> \
-                            Omat kurssit: {my_courses} \
-                            <p>Tunnus luotu: TÄHÄN PÄIVÄMÄÄRÄ</p> \
-                            <p>Poista tunnus: TUNNUKSEN poisto!</p>"
+                            Omat kurssit: {my_courses}"
 
     all = courses.list_courses()
 
@@ -205,3 +203,35 @@ def exams_download():
     questions = courses.fetch_questions(course)
 
     return render_template("download_exam.html", questions=questions)
+
+@app.route("/answers", methods=["POST"])
+def answers():
+
+    username = session["username"]
+    answers = []
+
+    for key in request.form:
+        answers.append(request.form[key])
+
+    course = answers[0]
+
+    answers = answers[1:]
+
+    result = courses.check_answers(course, answers, username)
+
+    points = result[0]
+    max_points = result[1]
+
+    
+    return render_template("answers.html", points=points, max_points=max_points)
+
+
+
+
+
+
+    firstname = request.form["firstname"]
+    lastname = request.form["lastname"]
+    username = request.form["username"]
+    password1 = request.form["password1"]
+    password2 = request.form["password2"]

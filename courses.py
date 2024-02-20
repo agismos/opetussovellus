@@ -50,9 +50,10 @@ def my_courses(username, column):
     courses = result.fetchall()
 
     result = "<br>"
+    result += "<ul>"
 
     for course in courses:
-        result += str(course.course_name) + "<br>"
+        result += "<li>" + str(course.course_name) + "</li>" "<br>"
 
     return result
 
@@ -103,13 +104,15 @@ def list_my_courses(username):
 
 def render(courses):
 
-    to_render = "<h1>Kurssit, joille olet ilmoittautunut:</h1>"
+    to_render = "<hr>" + "<h2>Kurssit, joille olet ilmoittautunut:</h2>"
     to_render += "<form action='/exams/download' method='POST'>"
 
+    to_render += "<ul>"
     for course in courses:
-        to_render += f"<p>{course}</p>"
+        to_render += f"<li>{course}</li>"
+    to_render += "</ul>"
 
-    to_render += "<p>Valitse tentti, jonka haluat suorittaa:</p>"
+    to_render += "<h1>Valitse tentti, jonka haluat suorittaa:</h2>"
     to_render += "<select name='course'>"
 
     for course in courses:
@@ -117,6 +120,7 @@ def render(courses):
 
     to_render += "</select>"
     to_render += "<p><input type='submit' value='Aloita tentti'></p>"
+    to_render += "<a href='/'>Palaa etusivulle</a>"
     return to_render
 
 def fetch_questions(course_name):
@@ -134,17 +138,42 @@ def fetch_questions(course_name):
     result = ""
     number = 1
     result += "<form action='/answers' method='POST'>"
+    result += f"<input type='radio' name='{course_name}' value='{course_name}' checked> Valittu kurssi: {course_name}"
+    result += "<br><hr>"
 
     for question in dict:
         result += f"<h1>{question}</h1>"
         for answer in dict[question]:
             if len(dict[question]) > 1:
-                result += f"<p><input type='radio' name='answer{number}' value='{answer[0]}'> {answer[0]}"
+                result += f"<p><input type='radio' name='answer{number}' value='{answer[0]}' required> {answer[0]}"
             else:
-                result += f"<input type='text' name=answer{number}>"
+                result += f"<input type='text' name='answer{number}' required>"
         number += 1
         result += "<br><hr>"
 
     result += "<p><input type='submit' value='Lähetä'></form>"
     
     return result
+
+def check_answers(course, answers, username):
+
+    sql = text(f"SELECT (answer) FROM questions WHERE course_name='{course}' and is_correct='t'")
+
+    correct_answers = db.session.execute(sql).fetchall()
+
+    max_points = len(answers)
+
+    points = 0
+
+    for i in range(len(answers)):
+
+        if answers[i] == correct_answers[i][0]:
+            points += 1
+
+    sql = text("INSERT INTO results (course_name, student_username, points) \
+               VALUES (:course_name, :student_username, :points)")
+    db.session.execute(sql, {"course_name":course, "student_username":username, \
+                             "points":points})
+    db.session.commit()
+
+    return points, max_points
