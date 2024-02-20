@@ -11,7 +11,7 @@ def index():
 
     generate_course = ""
     if users.check_status():
-        generate_course = "<a href='/generate_course'>Lisää kurssi</a>"
+        generate_course = "<a href='/generate_course'>Lisää tentti</a>"
 
     return render_template("index.html", courses=all, generate_course=generate_course)
 
@@ -97,13 +97,13 @@ def show_course_details(course):
 
     generate_course = ""
     if users.check_status():
-        generate_course = "<a href='/generate_course'>Lisää kurssi</a>"
+        generate_course = "<a href='/generate_course'>Lisää tentti</a>"
 
     hyperlink = ""
     if not users.check_status():
         hyperlink = f"<form action='/enroll' method='POST'> \
                     <input type='hidden' name='{course}'> \
-                    <input type='submit' value='Ilmoittaudu kurssille'> \
+                    <input type='submit' value='Ilmoittaudu tenttiin'> \
                     </form>"
     
     return render_template("index.html", course_information=result, courses=allcourses, hyperlink=hyperlink,
@@ -114,10 +114,10 @@ def show_course_details(course):
 def enroll():
     course_name = list(request.form.keys())[0]
 
-    course_information= "Ilmoittautuminen lisätty. Tervetuloa kurssille!"
+    course_information= "Ilmoittautuminen lisätty."
 
     if not courses.add_enrollment(course_name):
-        course_information = "Olet jo ilmoittautunut tälle kurssille."
+        course_information = "Olet jo ilmoittautunut tähän tenttiin."
 
     all = courses.list_courses()
     return render_template("index.html", courses=all, course_information=course_information)
@@ -142,7 +142,7 @@ def information():
 
     generate_course = ""
     if users.check_status():
-        generate_course = "<a href='/generate_course'>Lisää kurssi</a>"
+        generate_course = "<a href='/generate_course'>Lisää tentti</a>"
 
     return render_template("index.html", generate_course=generate_course,
                                 courses=all, username=username, my_information=my_information)
@@ -224,14 +224,3 @@ def answers():
 
     
     return render_template("answers.html", points=points, max_points=max_points)
-
-
-
-
-
-
-    firstname = request.form["firstname"]
-    lastname = request.form["lastname"]
-    username = request.form["username"]
-    password1 = request.form["password1"]
-    password2 = request.form["password2"]
