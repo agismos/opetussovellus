@@ -136,7 +136,7 @@ def information():
     my_information = f"<h1>Käyttäjätiedot</h1> \
                             <p>Käyttäjätunnus: {username} </p> \
                             <p>Status: {role} </p> \
-                            Omat kurssit: {my_courses}"
+                            Ilmoittautumiset: {my_courses}"
 
     all = courses.list_courses()
 
