@@ -2,36 +2,41 @@
 
 Sovelluksen käyttäjä on opettaja tai opiskelija. Käyttäjä voi luoda tunnuksen
 joko opettajan tai opiskelijan roolissa. Jos tunnuksen luo opettajan roolissa,
-tarvitaan salainen avain. Tässä vaiheessa salainen avain on abc123.
+tarvitaan salainen avain.
 
-Sovellusta voi tässä vaiheessa testata paikallisesti. Kloonaamisen jälkeen
-sovelluksen pitäisi käynnistyä seuraavilla komennoilla:
+Sovellusta voi tässä vaiheessa testata paikallisesti. Kloonaamisen jälkeen on luotava
+.env-tiedosto, joka määritellään näin:
 
-<ul>
-  <li>python3 -m venv venv</li>
-  <li>source venv/bin/activate</li>
-  <li>pip install -r ./requirements.txt</li>
+```bash
+DATABASE_URL=<tietokannan-paikallinen-osoite>
+SECRET_KEY=<salainen-avain>
+TEACHER_KEY=<salainen-avain-opettajan-rekisteröitymistä-varten>
+```
 
-  <li>psql < schema.sql</li>
+Tämän jälkeen ajetaan seuraavat komennot:
 
-  <li>flask run</li>
-</ul>
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r ./requirements.txt
+psql < schema.sql
+flask run
+```
 
 Mitä sovelluksessa voi tehdä tässä vaiheessa:
 
 <ul>
   <li>Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen.</li>
-  <li>Opiskelija näkee listan kursseista ja voi liittyä kurssille.</li>
-  <li>Käyttäjä näkee yhteenvedon omista tiedoista (kesken)</li>
+  <li>Opiskelija näkee listan tenteistä ja voi ilmoittautua tenttiin.</li>
+  <li>Käyttäjä näkee yhteenvedon omista tiedoista.</li>
 
-  <li>Opettaja pystyy luomaan uuden kurssin ja tentin.</li>
+  <li>Opettaja pystyy luomaan uuden tentin.</li>
 
   <li>Opettaja pystyy lisäämään tenttiin kysymyksiä ja vastauksia. Vastaukset
       tallentuvat tietokantaan questions, jossa näkyy onko vastaus oikein vai väärin.</li>
-  <li>Tentin tekeminen on mahdollista. (Tentin tulokset eivät vielä tallennu minnekään.)</li>
+  <li>Opiskelija voi tenttiä tentin, johon on ilmoittautunut.</li>
 </ul>
 
 Tehtävää:
 <ul>
   <li>Opiskelija näkee yhteenvedon tekemistään tenteistä.</li>
-  <li>Ulkoasu on alkutekijöissään. Tavoitteena tyylikäs ja yhtenäinen ilme sovellukselle.</li>
