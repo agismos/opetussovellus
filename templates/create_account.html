@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-
 <div class="login">
     <h1>Luo tunnus</h1>
     <form action="/add_student" method="POST" onsubmit="return check1(this)">
@@ -40,11 +39,6 @@
         if (form.password1.value != form.password2.value) {
             alert("Salasanat eivät täsmää.");
             return false;
-        }
-
-        if (form.role.value == "teachers" && form.secretkey.value != "abc123") {
-            alert("Virheellinen avain")
-            return false
         }
         return true;
 }

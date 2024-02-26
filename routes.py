@@ -4,6 +4,7 @@ from db import db
 from sqlalchemy.sql import text
 from werkzeug.security import check_password_hash, generate_password_hash
 import users, courses
+from os import getenv
 
 @app.route("/")
 def index():
@@ -40,8 +41,6 @@ def create_account():
 @app.route("/add_student", methods=["POST"])
 def add_student():
 
-    # Tee tarkistuksista funktiot tiedostoon users.py?
-
     firstname = request.form["firstname"]
     lastname = request.form["lastname"]
     username = request.form["username"]
@@ -56,7 +55,7 @@ def add_student():
     value5 = "value=" + password2
 
     if role == "teachers":
-        if request.form["secretkey"] != "abc123":
+        if request.form["secretkey"] != getenv("TEACHER_KEY"):
             return render_template("create_account.html", error=error,
                                                         value1=value1,
                                                         value2=value2,
