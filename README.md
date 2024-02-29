@@ -12,6 +12,7 @@ DATABASE_URL=<tietokannan-paikallinen-osoite>
 SECRET_KEY=<salainen-avain>
 TEACHER_KEY=<salainen-avain-opettajan-rekisteröitymistä-varten>
 ```
+Kohtaan TEACHER_KEY tulee keksiä salasana, joka täytyy antaa opettajan tunnusta luotaessa.
 
 Tämän jälkeen ajetaan seuraavat komennot:
 
