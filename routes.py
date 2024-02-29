@@ -238,8 +238,22 @@ def edit_exam():
 @app.route("/edit_exam/<course>")
 def edit(course):
 
-    listquestions = courses.list_questions(course)
-    
-    #listanswers = courses.list_answers(listquestions)
+    html = courses.list_questions(course)
 
-    return render_template("list_all_questions.html", listquestions=listquestions, course=course)
+    return render_template("list_all_questions.html", html=html, course=course)
+
+@app.route("/remove_question/", methods=["POST"])
+def remove_question():
+
+    values = request.form.to_dict()
+
+    information = []
+
+    for value in values:
+        information.append(value)
+
+    courses.remove_question(information)
+
+    html = courses.list_questions(information[1])
+
+    return render_template("list_all_questions.html", html=html, course=information[1])

@@ -183,11 +183,40 @@ def select_courses(username):
     sql = text(f"SELECT (course_name) FROM courses WHERE teacher_username='{username}'")
     result = db.session.execute(sql)
     courses = result.fetchall()
-    print(courses)
     return courses
 
 def list_questions(course):
-    sql = text(f"SELECT DISTINCT question FROM questions WHERE course_name='{course}'")
+    sql = text(f"SELECT question, answer, is_correct FROM questions WHERE course_name='{course}'")
     result = db.session.execute(sql)
     listall = result.fetchall()
-    return listall
+    dict = {}
+    for question in listall:
+        if question[0] not in dict:
+            dict[question[0]] = []
+        dict[question[0]].append((question[1], question[2]))
+
+    html = "<ul>"
+
+    for question, answers in dict.items():
+        html += f"<h3><p><li>{question}</h3>" + "</p>"
+        html += "<i>Vastaukset:</i>"
+        html += "<p><ul>"
+        for answer in answers:
+            html += f"<li>{answer[0]}, <i>{answer[1]}</i></li>"
+        html += "</p></ul>"
+        html += f"<form action='/remove_question/' method='POST'>" + \
+             f"<input type='hidden' name='{question}'>" + \
+             f"<input type='hidden' name='{course}'>" + \
+                "<input type='submit' value='Poista kysymys'> </form>" + "</li>"
+        html += "</p><hr>"
+    html += "</ul>"
+
+    return html
+
+def remove_question(list):
+
+    sql = text(f"DELETE FROM questions WHERE question='{list[0]}' AND course_name='{list[1]}'")
+    db.session.execute(sql)
+    db.session.commit()
+
+    return
