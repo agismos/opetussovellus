@@ -135,7 +135,9 @@ def information():
     my_information = f"<h1>Käyttäjätiedot</h1> \
                             <p>Käyttäjätunnus: {username} </p> \
                             <p>Status: {role} </p> \
-                            Ilmoittautumiset: {my_courses}"
+                            Omat tentit: {my_courses}"
+    if users.check_status():
+        my_information += "<a href='/edit_exam'>Siirry tentin muokkaukseen</a>"
 
     all = courses.list_courses()
 
@@ -223,3 +225,21 @@ def answers():
 
     
     return render_template("answers.html", points=points, max_points=max_points)
+
+@app.route("/edit_exam")
+def edit_exam():
+
+    username = session["username"]
+
+    result = courses.select_courses(username)
+
+    return render_template("edit_exam.html", result=result)
+
+@app.route("/edit_exam/<course>")
+def edit(course):
+
+    listquestions = courses.list_questions(course)
+    
+    #listanswers = courses.list_answers(listquestions)
+
+    return render_template("list_all_questions.html", listquestions=listquestions, course=course)

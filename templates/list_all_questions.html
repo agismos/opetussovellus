@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<h1>
+    Muokattava tentti: {{ course }}
+</h1>
+<h3>Tentin kysymykset:</h3>
+<ul>
+    {% for question in listquestions %}
+    <p><li>{{ question[0] }} <a href="/remove_question/{{ question }}">Poista kysymys</a></li></p>
+    {% endfor %}
+</ul>
+
+<p>
+    <a href="/add_questions/{{ course }}">Lisää tenttiin uusi kysymys</a>
+</p>
+
+
+<hr>
+
+<p><a href="/edit_exam">Takaisin tentin valintaan</a></p>
+<p><a href="/">Palaa etusivulle</a></p>
+
+<style>
+    body {
+        margin: auto;
+        max-width: 45em;
+        font-family: 'Helvetica', 'Arial', sans-serif;
+    }
+
+</style>

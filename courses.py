@@ -177,3 +177,17 @@ def check_answers(course, answers, username):
     db.session.commit()
 
     return points, max_points
+
+def select_courses(username):
+
+    sql = text(f"SELECT (course_name) FROM courses WHERE teacher_username='{username}'")
+    result = db.session.execute(sql)
+    courses = result.fetchall()
+    print(courses)
+    return courses
+
+def list_questions(course):
+    sql = text(f"SELECT DISTINCT question FROM questions WHERE course_name='{course}'")
+    result = db.session.execute(sql)
+    listall = result.fetchall()
+    return listall
