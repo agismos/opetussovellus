@@ -15,12 +15,12 @@
         <p>Sukunimi:<br>
         <input type="text" name="lastname" required {{ value2 }}></p>
         <p>Käyttäjätunnus:<br>
-        <input type="text" name="username" required {{ value3 }}>
+        <input type="text" pattern=".{3,}" name="username" required title="Käyttäjätunnuksen vähimmäispituus on 3 merkkiä." {{ value3 }}>
         {{ message }}</p>
         <p>Salasana:<br>
-        <input type="password" name="password1" required {{ value4 }}></p>
+        <input type="password" pattern=".{8,}" name="password1" required title="Salasanan vähimmäispituus on 8 merkkiä." {{ value4 }}></p>
         <p>Toista salasana:<br>
-        <input type="password" name="password2" required {{ value5 }}></p><hr>
+        <input type="password" pattern=".{8,}" name="password2" required title="Salasanan vähimmäispituus on 8 merkkiä." {{ value5 }}></p><hr>
         {{ password_check }}
         <p>Salainen avain:<br>
         (Täytä tämä kenttä vain, jos luot tunnuksen opettajan roolissa.)<br>
