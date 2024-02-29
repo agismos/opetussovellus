@@ -24,7 +24,7 @@ psql < schema.sql
 flask run
 ```
 
-Mitä sovelluksessa voi tehdä tässä vaiheessa:
+Sovelluksen ominaisuudet:
 
 <ul>
   <li>Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen.</li>
@@ -38,7 +38,8 @@ Mitä sovelluksessa voi tehdä tässä vaiheessa:
   <li>Opiskelija voi tenttiä tentin, johon on ilmoittautunut.</li>
 </ul>
 
-Tehtävää:
+Ideoita jatkokehittämiseen:
+
 <ul>
   <li>Opiskelija näkee yhteenvedon tekemistään tenteistä; oliko vastaus oikein/väärin.</li>
   <li>Myös opettaja voi tehdä tentin (kokeilun vuoksi).</li>
