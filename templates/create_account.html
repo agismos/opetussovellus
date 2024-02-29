@@ -1,7 +1,10 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 <div class="login">
-    <h1>Luo tunnus</h1>
+    <h1>Tenttisovellus</h1>
+    <hr>
+    <h2>Luo tunnus</h2>
+    <p><span style="color: red;">{{ message }}</span></p>
     <form action="/add_student" method="POST" onsubmit="return check1(this)">
         Valitse rooli:
         <p>
@@ -15,17 +18,16 @@
         <p>Sukunimi:<br>
         <input type="text" name="lastname" required {{ value2 }}></p>
         <p>Käyttäjätunnus:<br>
-        <input type="text" pattern=".{3,}" name="username" required title="Käyttäjätunnuksen vähimmäispituus on 3 merkkiä." {{ value3 }}>
-        {{ message }}</p>
+        <input type="text" pattern=".{3,}" name="username" required title="Käyttäjätunnuksen vähimmäispituus on 3 merkkiä." {{ value3 }}></p>
         <p>Salasana:<br>
         <input type="password" pattern=".{8,}" name="password1" required title="Salasanan vähimmäispituus on 8 merkkiä." {{ value4 }}></p>
         <p>Toista salasana:<br>
         <input type="password" pattern=".{8,}" name="password2" required title="Salasanan vähimmäispituus on 8 merkkiä." {{ value5 }}></p><hr>
         {{ password_check }}
         <p>Salainen avain:<br>
-        (Täytä tämä kenttä vain, jos luot tunnuksen opettajan roolissa.)<br>
-        <input type="password" name="secretkey"></p>
-        {{ error }}
+        (Täytä tämä kenttä vain, jos luot tunnuksen opettajan roolissa.)<br></p>
+        <p><input type="password" name="secretkey"></p>
+        <p><span style="color: red;">{{ error }}</span></p>
         <hr>
         <input type="submit" value="Luo tunnus">
     </form>

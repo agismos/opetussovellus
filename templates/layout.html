@@ -22,10 +22,10 @@
         <nav>
             <div class="nav">
                 <h2>Tervetuloa tenttimään!</h2>
-                Olet kirjautunut nimellä {{ session.username }}. <hr>
-                <li><a href="/logout">Kirjaudu ulos</a></li>
+                <p>Olet kirjautunut nimellä {{ session.username }}.</p> <hr>
+                <p><li><a href="/logout">Kirjaudu ulos</a></li>
                 <li><a href="/information">Käyttäjätiedot</a></li>
-                <li><a href="/exams">Tee tentti</a></li>
+                <li><a href="/exams">Tee tentti</a></li></p>
             </div>
         </nav><br>
 
@@ -40,14 +40,13 @@
         </div>
 
 
-
-
         {% else %}
         <div class="login">
         <form action="/login" method="POST">
+                <p><h1>Tenttisovellus</h1></p>
+                <hr>
                 <p>Tunnus:
-                <input type="text" name="username">
-                {{ message1 }}</p>
+                <input type="text" name="username"></p>
                 <p>Salasana:
                 <input type="password" name="password">
                 {{ message2 }}</p>
@@ -59,6 +58,7 @@
                 </p>
                 <input type="submit" value="Kirjaudu">
                 <p><a href="/create_account">Luo tunnus</a></p>
+                <p><span style="color: red;">{{ message1 }}</span></p>
         </div>
         </form>
         {% endif %}
