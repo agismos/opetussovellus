@@ -104,7 +104,7 @@ def list_my_courses(username):
 
 def render(courses):
 
-    to_render = "<hr>" + "<h2>Kurssit, joille olet ilmoittautunut:</h2>"
+    to_render = "<hr>" + "<h2>Tentit, joihin olet ilmoittautunut:</h2>"
     to_render += "<form action='/exams/download' method='POST'>"
 
     to_render += "<ul>"

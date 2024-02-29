@@ -1,11 +1,11 @@
 <div class="container">
     <div class="input">
-        <h1>Lisää kysymyksiä kurssille {{ course_name }}</h1>
+        <h1>Lisää kysymyksiä tenttiin {{ course_name }}</h1>
 
         <form action="/add_to_database" method="POST">
 
             <p>
-            <input type="radio" name="course_name" value="{{ course_name }}" checked> Kurssin nimi: {{ course_name }} </p>
+            <input type="radio" name="course_name" value="{{ course_name }}" checked> Tentin nimi: {{ course_name }} </p>
 
             <input type="radio" name="question" value="{{ question }}" checked> Kysymys: {{ question }} </p>
 
