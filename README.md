@@ -30,16 +30,18 @@ Mitä sovelluksessa voi tehdä tässä vaiheessa:
   <li>Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen.</li>
   <li>Opiskelija näkee listan tenteistä ja voi ilmoittautua tenttiin.</li>
   <li>Käyttäjä näkee yhteenvedon omista tiedoista.</li>
-
   <li>Opettaja pystyy luomaan uuden tentin.</li>
-
   <li>Opettaja pystyy lisäämään tenttiin kysymyksiä ja vastauksia. Vastaukset
       tallentuvat tietokantaan questions, jossa näkyy onko vastaus oikein vai väärin.</li>
   <li>Opettaja näkee yhteenvedon tekemästään tentistä sekä voi lisätä ja poistaa kysymyksiä.</li>
+  <li>Opettaja näkee yhteenvedon opiskelijoiden kurssisuorituksista.</li>
   <li>Opiskelija voi tenttiä tentin, johon on ilmoittautunut.</li>
 </ul>
 
 Tehtävää:
 <ul>
-  <li>Opiskelija näkee yhteenvedon tekemistään tenteistä.</li>
-  <li>Opettaja voi tehdä tekemänsä tentin.</li>
+  <li>Opiskelija näkee yhteenvedon tekemistään tenteistä; oliko vastaus oikein/väärin.</li>
+  <li>Myös opettaja voi tehdä tentin (kokeilun vuoksi).</li>
+  <li>Opettaja näkee opiskelijoiden suorituksista, mihin kysymyksiin on vastattu oikein ja mihin väärin.</li>
+  <li>Tenttiä luodessa opettaja voi määrittää, monenko pisteen arvoinen kysymys on. Nyt kaikki kysymykset ovat 1 pisteen arvoisia.
+  Tämä ominaisuus edellyttää muutosta tietokantaan questions.</li>
