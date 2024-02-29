@@ -35,9 +35,11 @@ Mitä sovelluksessa voi tehdä tässä vaiheessa:
 
   <li>Opettaja pystyy lisäämään tenttiin kysymyksiä ja vastauksia. Vastaukset
       tallentuvat tietokantaan questions, jossa näkyy onko vastaus oikein vai väärin.</li>
+  <li>Opettaja näkee yhteenvedon tekemästään tentistä sekä voi lisätä ja poistaa kysymyksiä.</li>
   <li>Opiskelija voi tenttiä tentin, johon on ilmoittautunut.</li>
 </ul>
 
 Tehtävää:
 <ul>
   <li>Opiskelija näkee yhteenvedon tekemistään tenteistä.</li>
+  <li>Opettaja voi tehdä tekemänsä tentin.</li>
