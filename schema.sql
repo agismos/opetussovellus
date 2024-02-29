@@ -50,5 +50,6 @@ CREATE TABLE results (
     id SERIAL PRIMARY KEY,
     course_name TEXT REFERENCES courses(course_name),
     student_username TEXT REFERENCES students(username),
-    points INTEGER
+    points INTEGER,
+    max_points INTEGER
 );

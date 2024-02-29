@@ -178,10 +178,10 @@ def check_answers(course, answers, username):
         if answers[i] == correct_answers[i][0]:
             points += 1
 
-    sql = text("INSERT INTO results (course_name, student_username, points) \
-               VALUES (:course_name, :student_username, :points)")
+    sql = text("INSERT INTO results (course_name, student_username, points, max_points) \
+               VALUES (:course_name, :student_username, :points, :max_points)")
     db.session.execute(sql, {"course_name":course, "student_username":username, \
-                             "points":points})
+                             "points":points, "max_points":max_points})
     db.session.commit()
 
     return points, max_points
@@ -237,3 +237,17 @@ def check_answer(course, username):
     if len(results) != 0:
         return False
     return True
+
+def students_points():
+    sql = text("SELECT course_name, student_username, points, max_points FROM results")
+    db.session.execute(sql)
+    results = db.session.execute(sql).fetchall()
+    
+    dict = {}
+
+    for result in results:
+        if result[0] not in dict:
+            dict[result[0]] = []
+        dict[result[0]].append((result[1], result[2], result[3]))
+    
+    return dict

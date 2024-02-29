@@ -137,7 +137,8 @@ def information():
                             <p>Status: {role} </p> \
                             Omat tentit: {my_courses}"
     if users.check_status():
-        my_information += "<a href='/edit_exam'>Siirry tentin muokkaukseen</a>"
+        my_information += "<p><a href='/edit_exam'>Siirry tentin muokkaukseen</a></p>"
+        my_information += "<p><a href='/show_students_points'>Näytä yhteenveto opiskelijoiden suorituksista</a></p>"
 
     all = courses.list_courses()
 
@@ -273,3 +274,9 @@ def remove_question():
     html = courses.list_questions(information[1])
 
     return render_template("list_all_questions.html", html=html, course=information[1])
+
+@app.route("/show_students_points")
+def show_students_points():
+    information = courses.students_points()
+
+    return render_template("show_students_points.html", information=information)

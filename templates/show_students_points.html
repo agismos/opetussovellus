@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<h1>
+    Yhteenveto opiskelijoiden tenttisuorituksista:
+</h1>
+<hr>
+käyttäjänimi: pisteet / maksimipisteet
+
+
+{% for course, results in information.items() %}
+        <h2>{{ course }}</h2>
+        <ul>
+            {% for student, points, max_points in results %}
+                <li>{{ student }}: {{ points }} / {{ max_points }}</li>
+            {% endfor %}
+        </ul>
+{% endfor %}
+
+<p><a href="/">Palaa etusivulle</a></p>
+
+
+<style>
+    body {
+        margin: auto;
+        max-width: 45em;
+        font-family: 'Helvetica', 'Arial', sans-serif;
+    }
+
+</style>
