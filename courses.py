@@ -137,8 +137,8 @@ def fetch_questions(course_name):
     
     result = ""
     number = 1
-    result += "<form action='/answers' method='POST'>"
-    result += f"<input type='radio' name='{course_name}' value='{course_name}' checked> Valittu kurssi: {course_name}"
+    result += "<form action='/answers' method='POST' onsubmit='return confirmSubmit();'>"
+    result += f"<input type='radio' name='{course_name}' value='{course_name}' checked> Tentin nimi: {course_name}"
     result += "<br><hr>"
 
     for question in dict:
@@ -151,7 +151,15 @@ def fetch_questions(course_name):
         number += 1
         result += "<br><hr>"
 
-    result += "<p><input type='submit' value='Lähetä'></form>"
+    result += "<p><input type='submit' value='Lopeta tentti'></form>"
+    result += """<script>
+    function confirmSubmit() {
+        var confirmation = confirm("Haluatko varmasti lopettaa tentin? Lopettamisen jälkeen et voi enää muuttaa vastauksiasi.");
+        
+        // Jos käyttäjä klikkaa "OK", lomake lähetetään, muuten ei
+        return confirmation;
+    }
+    </script>"""
     
     return result
 
@@ -220,3 +228,12 @@ def remove_question(list):
     db.session.commit()
 
     return
+
+def check_answer(course, username):
+    sql = text(f"SELECT course_name, student_username FROM results WHERE course_name='{course}' \
+               AND student_username='{username}'")
+    db.session.execute(sql)
+    results = db.session.execute(sql).fetchall()
+    if len(results) != 0:
+        return False
+    return True

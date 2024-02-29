@@ -199,7 +199,15 @@ def exams():
 @app.route("/exams/download", methods=["POST"])
 def exams_download():
 
+    username = session["username"]
     course = request.form["course"]
+
+    if not courses.check_answer(course, username):
+        error = f"<h2>{course}</h2>"
+        error += "Olet jo tehnyt tämän tentin."
+        error += "<p><a href='/exams'>Takaisin tentin valintaan</a></p>"
+        error += "<p><a href='/'>Palaa etusivulle</a></p>"
+        return render_template("download_exam.html", error=error)
 
     questions = courses.fetch_questions(course)
 
@@ -215,6 +223,14 @@ def answers():
         answers.append(request.form[key])
 
     course = answers[0]
+
+    if not courses.check_answer(course, username):
+        error = f"<h2>{course}</h2>"
+        error += "Olet jo tehnyt tämän tentin."
+        error += "<p><a href='/exams'>Takaisin tentin valintaan</a></p>"
+        error += "<p><a href='/'>Palaa etusivulle</a></p>"
+        return render_template("download_exam.html", error=error)
+
 
     answers = answers[1:]
 
