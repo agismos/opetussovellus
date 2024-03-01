@@ -3,14 +3,14 @@
     Yhteenveto opiskelijoiden tenttisuorituksista:
 </h1>
 <hr>
-käyttäjänimi: pisteet / maksimipisteet
+opiskelijan nimi | käyttäjänimi | pisteet / maksimipisteet
 
 
 {% for course, results in information.items() %}
         <h2>{{ course }}</h2>
         <ul>
-            {% for student, points, max_points in results %}
-                <li>{{ student }}: {{ points }} / {{ max_points }}</li>
+            {% for student, realname, points, max_points in results %}
+                <li>{{ realname }} | {{ student }} | {{ points }} / {{ max_points }}</li>
             {% endfor %}
         </ul>
 {% endfor %}

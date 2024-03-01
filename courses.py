@@ -239,7 +239,8 @@ def check_answer(course, username):
     return True
 
 def students_points():
-    sql = text("SELECT course_name, student_username, points, max_points FROM results")
+    sql = text("SELECT course_name, student_username, realname, points, max_points FROM \
+               students LEFT JOIN results ON students.username=results.student_username")
     db.session.execute(sql)
     results = db.session.execute(sql).fetchall()
     
@@ -248,6 +249,6 @@ def students_points():
     for result in results:
         if result[0] not in dict:
             dict[result[0]] = []
-        dict[result[0]].append((result[1], result[2], result[3]))
+        dict[result[0]].append((result[1], result[2], result[3], result[4]))
     
     return dict
